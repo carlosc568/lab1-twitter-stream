@@ -1,4 +1,4 @@
-function registerTemplate() {
+fhfjjgfunction registerTemplate() {
     template = $("#template").html();
     Mustache.parse(template);
 }
