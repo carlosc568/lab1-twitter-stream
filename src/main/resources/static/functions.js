@@ -52,7 +52,6 @@ function connect() {
     	console.log(stompClient);
     	console.log("Conectado");
     	$("#resultsBlock").empty();
-    	$("#resultsBlock").append("Polla de camello");
     });
 }
 
