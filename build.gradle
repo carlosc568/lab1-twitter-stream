@@ -37,5 +37,7 @@ dependencies {
     compile("org.webjars:bootstrap:${boostrapVersion}")
 	compile("org.webjars:font-awesome:${fontawesomeVersion}")
 	compile("org.webjars.bower:mustache:${mustacheVersion}")
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework:spring-messaging")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
