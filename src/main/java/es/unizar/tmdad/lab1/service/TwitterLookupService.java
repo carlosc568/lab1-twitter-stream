@@ -18,7 +18,7 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 @Service
 public class TwitterLookupService {
 	
-/*private String consumerKey = System.getenv("twitter.consumerKey");
+private String consumerKey = System.getenv("twitter.consumerKey");
 
     
     private String consumerSecret = System.getenv("twitter.consumerSecret");
@@ -28,7 +28,7 @@ public class TwitterLookupService {
 
     
     private String accessTokenSecret = System.getenv("twitter.accessTokenSecret");
-*/
+    /*
 	@Value("${twitter.consumerKey}")
     private String consumerKey;
 
@@ -39,7 +39,7 @@ public class TwitterLookupService {
     private String accessToken;
 
     @Value("${twitter.accessTokenSecret}")
-    private String accessTokenSecret;
+    private String accessTokenSecret;*/
 
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
