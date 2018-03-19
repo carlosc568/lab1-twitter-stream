@@ -11,7 +11,7 @@ function registerSearch() {
     	
     	if(subscription!=undefined){
     		$("#resultsBlock").empty();
-    		stompClient.send('/app/unsub',{},query);
+    		//stompClient.send('/app/unsub',{},query);
     		subscription.unsubscribe();
     		subscription = undefined;
             

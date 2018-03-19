@@ -27,7 +27,10 @@ public class SimpleStreamListener implements StreamListener {
 	   //System.exit(0);
        Map<String,Object> map = new HashMap<>();
        map.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
-       ops.convertAndSend("/queue/search/" + query, tweet, map);
+       if(tweet.getUnmodifiedText().contains(query) || tweet.getText().contains(query)){
+    	   //System.out.println("Mandando tweet de query: "+query);
+    	   ops.convertAndSend("/queue/search/" + query, tweet, map);
+       }
    }
    
    	@Override

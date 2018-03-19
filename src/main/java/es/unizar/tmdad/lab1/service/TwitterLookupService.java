@@ -18,7 +18,7 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 @Service
 public class TwitterLookupService {
 	
-	private String consumerKey = System.getenv("twitter.consumerKey");
+/*private String consumerKey = System.getenv("twitter.consumerKey");
 
     
     private String consumerSecret = System.getenv("twitter.consumerSecret");
@@ -28,6 +28,18 @@ public class TwitterLookupService {
 
     
     private String accessTokenSecret = System.getenv("twitter.accessTokenSecret");
+*/
+	@Value("${twitter.consumerKey}")
+    private String consumerKey;
+
+    @Value("${twitter.consumerSecret}")
+    private String consumerSecret;
+
+    @Value("${twitter.accessToken}")
+    private String accessToken;
+
+    @Value("${twitter.accessTokenSecret}")
+    private String accessTokenSecret;
 
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
@@ -39,12 +51,19 @@ public class TwitterLookupService {
 
     public void search(String query) {
     	if(!canales.containsKey(query) && !query.equals("") && !query.equals(" ")){
-	        Twitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+	        if(canales.size()>=10){
+	        	unsubscribe((String)canales.keySet().toArray()[0]);
+	        	
+	        	
+	        }
+	        canales.forEach((k,v)-> System.out.println(k));
+	        System.out.println("Creando stream para: "+query);
+    		Twitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 	        StreamListener st = new SimpleStreamListener(messagingTemplate, query);
 	        list.add(st);
+	        canales2.put(query+'l',st);
 	        Stream s = twitter.streamingOperations().filter(query, list);
 	        canales.put(query, s);
-	        canales2.put(query+'l',st);
     	}
     
     }
@@ -53,14 +72,13 @@ public class TwitterLookupService {
     	if(canales.containsKey(query)){
     		
     		StreamListener st = canales2.get(query+'l');
-    		list.remove(st);
+    		
     		canales2.remove(query+'l');
     		st = null;
     		
-    		Stream s = canales.get(query);
+    		canales.get(query).close();
     		canales.remove(query);
-    		s.close();
-    		s = null;
+    		
     		
     	}
     	
