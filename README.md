@@ -1,7 +1,7 @@
 ## Laboratorio 1 : Creación de un wrapper sobre el API de Streaming de Twitter
 
 La versión de partida de este repositorio es REST. 
-Se puede ver desplegada en [https://sleepy-reaches-22911.herokuapp.com/](https://sleepy-reaches-22911.herokuapp.com/).
+Se puede ver desplegada en [https://safe-meadow-53714.herokuapp.com/](https://safe-meadow-53714.herokuapp.com/).
 
 ### Preparación
 
